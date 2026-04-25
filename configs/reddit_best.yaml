@@ -24,5 +24,13 @@ kmeans_polarity: false
 polarity_hybrid: true
 kmeans_max_minority_ratio: 0.42
 flip_score: false
-lcc_spearman_polarity: true
+polarity_mode: auto_vote
+lcc_spearman_polarity: false
 lcc_spearman_threshold: -0.05
+polarity_vote_q: 0.1
+polarity_vote_margin: 1
+polarity_min_confidence: 0.18
+polarity_lcc_rho_strong: 0.05
+polarity_deg_rho_strong: 0.05
+polarity_connectivity_rel_gap: 0.025
+polarity_verbose: false

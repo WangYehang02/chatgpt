@@ -34,7 +34,13 @@ if FMGAD_ROOT not in sys.path:
     sys.path.insert(0, FMGAD_ROOT)
 
 from auto_encoder import GraphAE
-from utils import softmax_with_temperature, compute_node_lcc_tensor, calibrate_polarity_lcc_spearman
+from utils import (
+    softmax_with_temperature,
+    compute_node_lcc_tensor,
+    compute_node_degree_tensor,
+    calibrate_polarity_lcc_spearman,
+    calibrate_polarity_auto_vote,
+)
 from load_custom_data import load_dgraphfin_data, load_dgraph_data
 from flow_matching_model import MLPFlowMatching, FlowMatchingModel, sample_flow_matching_free
 from FMloss import flow_matching_loss, conditional_flow_matching_loss
@@ -293,6 +299,15 @@ class ResFlowGAD(BaseTransform):
         quantile_rank_threshold: float = 0.5,
         lcc_spearman_polarity: bool = False,
         lcc_spearman_threshold: float = -0.05,
+        # 无监督极性主开关（与旧字段并存；若设置则优先生效）
+        polarity_mode: Optional[str] = None,
+        polarity_vote_q: float = 0.1,
+        polarity_vote_margin: int = 1,
+        polarity_min_confidence: float = 0.2,
+        polarity_lcc_rho_strong: float = 0.04,
+        polarity_deg_rho_strong: float = 0.04,
+        polarity_connectivity_rel_gap: float = 0.02,
+        polarity_verbose: bool = False,
     ):
         self.name = name
         self.num_trial = num_trial
@@ -335,7 +350,16 @@ class ResFlowGAD(BaseTransform):
         self.quantile_rank_threshold = quantile_rank_threshold
         self.lcc_spearman_polarity = lcc_spearman_polarity
         self.lcc_spearman_threshold = lcc_spearman_threshold
+        self.polarity_mode = polarity_mode
+        self.polarity_vote_q = polarity_vote_q
+        self.polarity_vote_margin = int(polarity_vote_margin)
+        self.polarity_min_confidence = float(polarity_min_confidence)
+        self.polarity_lcc_rho_strong = float(polarity_lcc_rho_strong)
+        self.polarity_deg_rho_strong = float(polarity_deg_rho_strong)
+        self.polarity_connectivity_rel_gap = float(polarity_connectivity_rel_gap)
+        self.polarity_verbose = bool(polarity_verbose)
         self._node_lcc = None  # type: Optional[torch.Tensor]
+        self._node_degree = None  # type: Optional[torch.Tensor]
 
         self.ae_dropout = ae_dropout
         self.ae_lr = ae_lr
@@ -349,6 +373,111 @@ class ResFlowGAD(BaseTransform):
         self.cos = nn.CosineSimilarity(dim=1, eps=1e-6)
         # v2 默认扫 500 个 time points；Weibo 先用更少点数提速，指标通常不会明显下降
         self.timesteps = 100
+
+    def _resolved_polarity_mode(self) -> str:
+        """与 YAML 旧字段保持兼容；若显式设置 `polarity_mode` 则优先生效。"""
+        pm = getattr(self, "polarity_mode", None)
+        if pm is not None and str(pm).strip() != "":
+            return str(pm).strip()
+        if getattr(self, "lcc_spearman_polarity", False):
+            return "legacy_lcc"
+        if getattr(self, "quantile_rank_polarity", False):
+            return "quantile_rank"
+        if getattr(self, "kmeans_polarity", False):
+            return "kmeans"
+        return "plain"
+
+    def _apply_score_polarity_plain(
+        self, score: torch.Tensor, edge_index: torch.Tensor
+    ) -> Tuple[torch.Tensor, Dict[str, Any]]:
+        s2 = _apply_polarity_calibration(
+            score,
+            flip_score=bool(getattr(self, "flip_score", False)),
+            kmeans_polarity=bool(getattr(self, "kmeans_polarity", False)),
+            quantile_rank_polarity=bool(getattr(self, "quantile_rank_polarity", False)),
+            quantile_rank_low=float(self.quantile_rank_low),
+            quantile_rank_high=float(self.quantile_rank_high),
+            quantile_rank_threshold=float(self.quantile_rank_threshold),
+            kmeans_random_state=int(self.kmeans_polarity_random_state),
+            kmeans_max_minority_ratio=float(self.kmeans_max_minority_ratio),
+            polarity_hybrid=bool(self.polarity_hybrid),
+        )
+        return s2, {"mode": "plain", "resolved_mode": "plain", "flipped": None}
+
+    def _apply_score_polarity(
+        self, score: torch.Tensor, edge_index: torch.Tensor
+    ) -> Tuple[torch.Tensor, Dict[str, Any]]:
+        mode = self._resolved_polarity_mode()
+        lcc = getattr(self, "_node_lcc", None)
+        deg = getattr(self, "_node_degree", None)
+        vrb = bool(getattr(self, "polarity_verbose", False))
+        th = float(getattr(self, "lcc_spearman_threshold", -0.05))
+
+        if mode == "off":
+            return score, {"mode": "off", "resolved_mode": "off", "flipped": False}
+
+        if mode == "auto_vote" and lcc is not None and deg is not None:
+            sc, _fl, di = calibrate_polarity_auto_vote(
+                score,
+                edge_index,
+                lcc.to(score.device),
+                deg.to(score.device),
+                q=float(getattr(self, "polarity_vote_q", 0.1)),
+                margin=int(getattr(self, "polarity_vote_margin", 1)),
+                min_confidence=float(getattr(self, "polarity_min_confidence", 0.2)),
+                lcc_rho_strong=float(getattr(self, "polarity_lcc_rho_strong", 0.04)),
+                deg_rho_strong=float(getattr(self, "polarity_deg_rho_strong", 0.04)),
+                connectivity_rel_gap=float(getattr(self, "polarity_connectivity_rel_gap", 0.02)),
+                legacy_lcc_threshold=th,
+                verbose=vrb,
+            )
+            return sc, {**di, "resolved_mode": "auto_vote"}
+
+        if mode == "auto_vote":
+            if vrb:
+                print("[auto_vote] LCC/degree 未预计算，回退为 plain 极性", flush=True)
+            return self._apply_score_polarity_plain(score, edge_index)
+
+        if mode == "legacy_lcc" and lcc is not None:
+            sc, flipped, di = calibrate_polarity_lcc_spearman(score, lcc.to(score.device), th, vrb)
+            return sc, {**di, "resolved_mode": "legacy_lcc", "flipped": bool(di.get("flipped", flipped))}
+
+        if mode == "legacy_lcc" and lcc is None:
+            if vrb:
+                print("[legacy_lcc] 无 LCC 缓存，回退 plain", flush=True)
+            return self._apply_score_polarity_plain(score, edge_index)
+
+        if mode == "quantile_rank":
+            s2 = _apply_polarity_calibration(
+                score,
+                flip_score=bool(getattr(self, "flip_score", False)),
+                kmeans_polarity=False,
+                quantile_rank_polarity=True,
+                quantile_rank_low=float(self.quantile_rank_low),
+                quantile_rank_high=float(self.quantile_rank_high),
+                quantile_rank_threshold=float(self.quantile_rank_threshold),
+                kmeans_random_state=int(self.kmeans_polarity_random_state),
+                kmeans_max_minority_ratio=float(self.kmeans_max_minority_ratio),
+                polarity_hybrid=bool(self.polarity_hybrid),
+            )
+            return s2, {"mode": "quantile_rank", "resolved_mode": "quantile_rank", "flipped": None}
+
+        if mode == "kmeans":
+            s2 = _apply_polarity_calibration(
+                score,
+                flip_score=bool(getattr(self, "flip_score", False)),
+                kmeans_polarity=True,
+                quantile_rank_polarity=False,
+                quantile_rank_low=float(self.quantile_rank_low),
+                quantile_rank_high=float(self.quantile_rank_high),
+                quantile_rank_threshold=float(self.quantile_rank_threshold),
+                kmeans_random_state=int(self.kmeans_polarity_random_state),
+                kmeans_max_minority_ratio=float(self.kmeans_max_minority_ratio),
+                polarity_hybrid=bool(self.polarity_hybrid),
+            )
+            return s2, {"mode": "kmeans", "resolved_mode": "kmeans", "flipped": None}
+
+        return self._apply_score_polarity_plain(score, edge_index)
 
     def _load_dataset(self, dset: str):
         if dset == "dgraphfin":
@@ -794,11 +923,17 @@ class ResFlowGAD(BaseTransform):
         self.dataset = dset
         data = self._load_dataset(dset)
         self._node_lcc = None
-        if getattr(self, "lcc_spearman_polarity", False):
-            n_nodes = int(getattr(data, "num_nodes", data.x.size(0)))
+        self._node_degree = None
+        n_nodes = int(getattr(data, "num_nodes", data.x.size(0)))
+        pmode = self._resolved_polarity_mode()
+        if pmode in ("legacy_lcc", "auto_vote"):
             if self.verbose:
                 print(f"Precomputing node LCC for {n_nodes} nodes (once)...", flush=True)
             self._node_lcc = compute_node_lcc_tensor(data.edge_index, n_nodes)
+        if pmode == "auto_vote":
+            if self.verbose:
+                print("Precomputing node degree (once) for auto_vote...", flush=True)
+            self._node_degree = compute_node_degree_tensor(data.edge_index, n_nodes)
         self._large_graph = getattr(data, "num_nodes", data.x.size(0)) > 15000
         if self.hid_dim is None:
             self.hid_dim = 2 ** int(math.log2(data.x.size(1)) - 1)
@@ -939,6 +1074,8 @@ class ResFlowGAD(BaseTransform):
             "auprc_std": float(torch.std(dm_auprc)),
             "f1_mean": float(torch.mean(dm_f1)),
             "f1_std": float(torch.std(dm_f1)),
+            "polarity_mode": self._resolved_polarity_mode(),
+            "polarity_diagnostics": dict(getattr(self, "_last_sample_polarity", {}) or {}),
         }
 
     def _compute_nll(self, data) -> torch.Tensor:
@@ -1456,6 +1593,7 @@ class ResFlowGAD(BaseTransform):
 
         auc_list, ap_list, rec_list, auprc_list, f1_list = [], [], [], [], []
         score_list = []
+        polarity_diag_list: List[Dict[str, Any]] = []
         large_graph = getattr(self, "_large_graph", False)
         if not large_graph:
             s = to_dense_adj(edge_index)[0].cuda()
@@ -1486,27 +1624,9 @@ class ResFlowGAD(BaseTransform):
             if getattr(self, "use_score_smoothing", False) and edge_index.numel() > 0:
                 score = _smooth_scores_by_graph(score, edge_index, self.score_smoothing_alpha, score.device)
 
-            # === 极性：LCC-Spearman 探针优先；否则分位秩 / K-Means / flip（均不用 y）===
-            if getattr(self, "lcc_spearman_polarity", False) and getattr(self, "_node_lcc", None) is not None:
-                score, _ = calibrate_polarity_lcc_spearman(
-                    score,
-                    self._node_lcc.to(score.device),
-                    float(getattr(self, "lcc_spearman_threshold", -0.05)),
-                    False,
-                )
-            else:
-                score = _apply_polarity_calibration(
-                    score,
-                    flip_score=bool(getattr(self, "flip_score", False)),
-                    kmeans_polarity=bool(getattr(self, "kmeans_polarity", False)),
-                    quantile_rank_polarity=bool(getattr(self, "quantile_rank_polarity", False)),
-                    quantile_rank_low=float(getattr(self, "quantile_rank_low", 0.1)),
-                    quantile_rank_high=float(getattr(self, "quantile_rank_high", 0.9)),
-                    quantile_rank_threshold=float(getattr(self, "quantile_rank_threshold", 0.5)),
-                    kmeans_random_state=int(getattr(self, "kmeans_polarity_random_state", 42)),
-                    kmeans_max_minority_ratio=float(getattr(self, "kmeans_max_minority_ratio", 0.42)),
-                    polarity_hybrid=bool(getattr(self, "polarity_hybrid", True)),
-                )
+            # === 无监督极性：polarity_mode / 旧 LCC 或 plain / 分位秩 / K-Means / flip（均不用 y）===
+            score, pol_one = self._apply_score_polarity(score, edge_index)
+            polarity_diag_list.append(pol_one)
 
             scores_cpu = score.detach().cpu()
             # 兜底：NaN/Inf 会破坏 sklearn 评估，替换为 0
@@ -1539,6 +1659,10 @@ class ResFlowGAD(BaseTransform):
                 )
 
         best_idx = int(np.argmax(auc_list))
+        if polarity_diag_list and 0 <= best_idx < len(polarity_diag_list):
+            self._last_sample_polarity = polarity_diag_list[best_idx]
+        else:
+            self._last_sample_polarity = {}
         if getattr(self, "ensemble_score", False):
             return (
                 float(np.max(auc_list)),
