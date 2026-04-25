@@ -1,0 +1,25 @@
+{
+  "dataset": "disney",
+  "seed": 3407,
+  "time_sec": 25.526665419340134,
+  "auc_mean": 0.7627118825912476,
+  "auc_std": NaN,
+  "ap_mean": 0.12402718514204025,
+  "ap_std": NaN,
+  "rec_mean": 0.1666666716337204,
+  "rec_std": NaN,
+  "auprc_mean": 0.09657204896211624,
+  "auprc_std": NaN,
+  "f1_mean": 0.1666666716337204,
+  "f1_std": NaN,
+  "polarity_mode": "legacy_lcc",
+  "polarity_diagnostics": {
+    "mode": "legacy_lcc",
+    "flipped": true,
+    "rho_lcc": -0.11379802503861174,
+    "legacy_threshold": -0.05,
+    "resolved_mode": "legacy_lcc"
+  },
+  "auc": 0.7627118825912476,
+  "wall_time_sec": 29.700409650802612
+}

@@ -1,0 +1,54 @@
+{
+  "dataset": "disney",
+  "seed": 42,
+  "time_sec": 23.85082356631756,
+  "auc_mean": 0.27259886264801025,
+  "auc_std": NaN,
+  "ap_mean": 0.03675338625907898,
+  "ap_std": NaN,
+  "rec_mean": 0.0,
+  "rec_std": NaN,
+  "auprc_mean": 0.030902186408638954,
+  "auprc_std": NaN,
+  "f1_mean": 0.0,
+  "f1_std": NaN,
+  "polarity_mode": "auto_vote",
+  "polarity_diagnostics": {
+    "mode": "auto_vote",
+    "probes": [
+      {
+        "name": "lcc_spearman",
+        "rho": -0.1311922286266675,
+        "vote": "flip",
+        "confidence": 0.1311922286266675
+      },
+      {
+        "name": "deg_spearman",
+        "rho": 0.7338606032172544,
+        "vote": "keep",
+        "confidence": 0.7338606032172544
+      },
+      {
+        "name": "topq_density",
+        "dens_top": 0.22727272727272385,
+        "dens_full": 0.04392866509310254,
+        "gap": 0.18334406217962132,
+        "k_top": 12,
+        "m_induced": 15,
+        "vote": "keep",
+        "confidence": 0.9167203108981066
+      }
+    ],
+    "total_confidence": 1.7817731427420285,
+    "sum_confidence": 1.7817731427420285,
+    "flip_votes": 1,
+    "keep_votes": 2,
+    "margin": 1,
+    "flipped": false,
+    "rho_lcc": -0.1311922286266675,
+    "rho_deg": 0.7338606032172544,
+    "resolved_mode": "auto_vote"
+  },
+  "auc": 0.27259886264801025,
+  "wall_time_sec": 28.41677236557007
+}

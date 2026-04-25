@@ -375,7 +375,10 @@ class ResFlowGAD(BaseTransform):
         self.timesteps = 100
 
     def _resolved_polarity_mode(self) -> str:
-        """与 YAML 旧字段保持兼容；若显式设置 `polarity_mode` 则优先生效。"""
+        """
+        显式 polarity_mode: off | legacy_lcc | auto_vote | kmeans | quantile_rank
+        未设置时回退为旧配置：lcc_spearman -> legacy_lcc；分位/聚类 或 全关则 plain（flip/kmeans/quantile 旧开关）。
+        """
         pm = getattr(self, "polarity_mode", None)
         if pm is not None and str(pm).strip() != "":
             return str(pm).strip()

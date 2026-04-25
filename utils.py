@@ -165,6 +165,7 @@ def calibrate_polarity_auto_vote(
                 "name": "lcc_spearman",
                 "rho": None if rho1 is None else float(rho1),
                 "vote": v1,
+                "confidence": float(c1),
             }
         )
 
@@ -192,6 +193,7 @@ def calibrate_polarity_auto_vote(
                 "name": "deg_spearman",
                 "rho": None if rho2 is None else float(rho2),
                 "vote": v2,
+                "confidence": float(c2),
             }
         )
 
@@ -226,11 +228,13 @@ def calibrate_polarity_auto_vote(
                 "k_top": k,
                 "m_induced": m_top,
                 "vote": v3,
+                "confidence": float(c3),
             }
         )
 
         total_conf = float(sum(p[1] for p in conf_pieces))
         diags["total_confidence"] = total_conf
+        diags["sum_confidence"] = total_conf
         diags["flip_votes"] = flip_v
         diags["keep_votes"] = keep_v
         diags["margin"] = margin

@@ -9,6 +9,13 @@ checkpoints/
 logs/
 reports_*/
 
+# 评估临时与过大日志
+results/polarity_full_run.log
+results/polarity_run.pid
+torch_geometric.nn.conv.gcn_conv_GCNConv_propagate_*.py
+# 单次 run 的临时工作目录（稳定副本见 *_seed*_auto_vote.json 等）
+results/polarity_eval_runs/pol_*/
+
 # Python
 __pycache__/
 *.py[cod]

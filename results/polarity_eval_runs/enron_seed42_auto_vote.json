@@ -1,0 +1,54 @@
+{
+  "dataset": "enron",
+  "seed": 42,
+  "time_sec": 312.7032023742795,
+  "auc_mean": 0.8525576591491699,
+  "auc_std": NaN,
+  "ap_mean": 0.0059651401825249195,
+  "ap_std": NaN,
+  "rec_mean": 0.0,
+  "rec_std": NaN,
+  "auprc_mean": 0.003607389749959111,
+  "auprc_std": NaN,
+  "f1_mean": 0.0,
+  "f1_std": NaN,
+  "polarity_mode": "auto_vote",
+  "polarity_diagnostics": {
+    "mode": "auto_vote",
+    "probes": [
+      {
+        "name": "lcc_spearman",
+        "rho": -0.06854491605573847,
+        "vote": "flip",
+        "confidence": 0.06854491605573847
+      },
+      {
+        "name": "deg_spearman",
+        "rho": -0.13181948369589072,
+        "vote": "flip",
+        "confidence": 0.13181948369589072
+      },
+      {
+        "name": "topq_density",
+        "dens_top": 0.006968953498034174,
+        "dens_full": 0.00193292628813171,
+        "gap": 0.005036027209902464,
+        "k_top": 1353,
+        "m_induced": 6374,
+        "vote": "abstain",
+        "confidence": 0.025180136049512317
+      }
+    ],
+    "total_confidence": 0.22554453580114148,
+    "sum_confidence": 0.22554453580114148,
+    "flip_votes": 2,
+    "keep_votes": 0,
+    "margin": 1,
+    "flipped": true,
+    "rho_lcc": -0.06854491605573847,
+    "rho_deg": -0.13181948369589072,
+    "resolved_mode": "auto_vote"
+  },
+  "auc": 0.8525576591491699,
+  "wall_time_sec": 317.1536684036255
+}

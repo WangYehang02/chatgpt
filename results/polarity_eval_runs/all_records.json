@@ -1,0 +1,732 @@
+[
+  {
+    "dataset": "books",
+    "mode": "auto_vote",
+    "seed": 42,
+    "auc_mean": 0.43852776288986206,
+    "ap_mean": 0.02127712219953537,
+    "polarity_diagnostics": {
+      "mode": "auto_vote",
+      "probes": [
+        {
+          "name": "lcc_spearman",
+          "rho": -0.052829337879332215,
+          "vote": "flip",
+          "confidence": 0.052829337879332215
+        },
+        {
+          "name": "deg_spearman",
+          "rho": 0.558280878481317,
+          "vote": "keep",
+          "confidence": 0.558280878481317
+        },
+        {
+          "name": "topq_density",
+          "dens_top": 0.014083080040526847,
+          "dens_full": 0.0036778867927533187,
+          "gap": 0.010405193247773527,
+          "k_top": 141,
+          "m_induced": 139,
+          "vote": "abstain",
+          "confidence": 0.05202596623886764
+        }
+      ],
+      "total_confidence": 0.6631361825995169,
+      "sum_confidence": 0.6631361825995169,
+      "flip_votes": 1,
+      "keep_votes": 1,
+      "margin": 1,
+      "flipped": false,
+      "rho_lcc": -0.052829337879332215,
+      "rho_deg": 0.558280878481317,
+      "resolved_mode": "auto_vote"
+    },
+    "rho_lcc": -0.052829337879332215,
+    "rho_deg": 0.558280878481317
+  },
+  {
+    "dataset": "books",
+    "mode": "auto_vote",
+    "seed": 2026,
+    "auc_mean": 0.4082733690738678,
+    "ap_mean": 0.015880616381764412,
+    "polarity_diagnostics": {
+      "mode": "auto_vote",
+      "probes": [
+        {
+          "name": "lcc_spearman",
+          "rho": -0.1500713201153132,
+          "vote": "flip",
+          "confidence": 0.1500713201153132
+        },
+        {
+          "name": "deg_spearman",
+          "rho": 0.6883527663464467,
+          "vote": "keep",
+          "confidence": 0.6883527663464467
+        },
+        {
+          "name": "topq_density",
+          "dens_top": 0.023100303951367775,
+          "dens_full": 0.0036778867927533187,
+          "gap": 0.019422417158614456,
+          "k_top": 141,
+          "m_induced": 228,
+          "vote": "abstain",
+          "confidence": 0.09711208579307228
+        }
+      ],
+      "total_confidence": 0.9355361722548322,
+      "sum_confidence": 0.9355361722548322,
+      "flip_votes": 1,
+      "keep_votes": 1,
+      "margin": 1,
+      "flipped": false,
+      "rho_lcc": -0.1500713201153132,
+      "rho_deg": 0.6883527663464467,
+      "resolved_mode": "auto_vote"
+    },
+    "rho_lcc": -0.1500713201153132,
+    "rho_deg": 0.6883527663464467
+  },
+  {
+    "dataset": "books",
+    "mode": "auto_vote",
+    "seed": 3407,
+    "auc_mean": 0.43450668454170227,
+    "ap_mean": 0.019199997186660767,
+    "polarity_diagnostics": {
+      "mode": "auto_vote",
+      "probes": [
+        {
+          "name": "lcc_spearman",
+          "rho": -0.07288309392784612,
+          "vote": "flip",
+          "confidence": 0.07288309392784612
+        },
+        {
+          "name": "deg_spearman",
+          "rho": 0.5429257972319793,
+          "vote": "keep",
+          "confidence": 0.5429257972319793
+        },
+        {
+          "name": "topq_density",
+          "dens_top": 0.010334346504559269,
+          "dens_full": 0.0036778867927533187,
+          "gap": 0.00665645971180595,
+          "k_top": 141,
+          "m_induced": 102,
+          "vote": "abstain",
+          "confidence": 0.03328229855902975
+        }
+      ],
+      "total_confidence": 0.6490911897188552,
+      "sum_confidence": 0.6490911897188552,
+      "flip_votes": 1,
+      "keep_votes": 1,
+      "margin": 1,
+      "flipped": false,
+      "rho_lcc": -0.07288309392784612,
+      "rho_deg": 0.5429257972319793,
+      "resolved_mode": "auto_vote"
+    },
+    "rho_lcc": -0.07288309392784612,
+    "rho_deg": 0.5429257972319793
+  },
+  {
+    "dataset": "books",
+    "mode": "legacy_lcc",
+    "seed": 42,
+    "auc_mean": 0.6215698719024658,
+    "ap_mean": 0.029236219823360443,
+    "polarity_diagnostics": {
+      "mode": "legacy_lcc",
+      "flipped": true,
+      "rho_lcc": -0.06462062037518355,
+      "legacy_threshold": -0.05,
+      "resolved_mode": "legacy_lcc"
+    },
+    "rho_lcc": -0.06462062037518355,
+    "rho_deg": null
+  },
+  {
+    "dataset": "books",
+    "mode": "legacy_lcc",
+    "seed": 2026,
+    "auc_mean": 0.6170349717140198,
+    "ap_mean": 0.03056648001074791,
+    "polarity_diagnostics": {
+      "mode": "legacy_lcc",
+      "flipped": true,
+      "rho_lcc": -0.15006777712625002,
+      "legacy_threshold": -0.05,
+      "resolved_mode": "legacy_lcc"
+    },
+    "rho_lcc": -0.15006777712625002,
+    "rho_deg": null
+  },
+  {
+    "dataset": "books",
+    "mode": "legacy_lcc",
+    "seed": 3407,
+    "auc_mean": 0.5827851891517639,
+    "ap_mean": 0.027910536155104637,
+    "polarity_diagnostics": {
+      "mode": "legacy_lcc",
+      "flipped": true,
+      "rho_lcc": -0.08591094951366433,
+      "legacy_threshold": -0.05,
+      "resolved_mode": "legacy_lcc"
+    },
+    "rho_lcc": -0.08591094951366433,
+    "rho_deg": null
+  },
+  {
+    "dataset": "disney",
+    "mode": "auto_vote",
+    "seed": 42,
+    "auc_mean": 0.27259886264801025,
+    "ap_mean": 0.03675338625907898,
+    "polarity_diagnostics": {
+      "mode": "auto_vote",
+      "probes": [
+        {
+          "name": "lcc_spearman",
+          "rho": -0.1311922286266675,
+          "vote": "flip",
+          "confidence": 0.1311922286266675
+        },
+        {
+          "name": "deg_spearman",
+          "rho": 0.7338606032172544,
+          "vote": "keep",
+          "confidence": 0.7338606032172544
+        },
+        {
+          "name": "topq_density",
+          "dens_top": 0.22727272727272385,
+          "dens_full": 0.04392866509310254,
+          "gap": 0.18334406217962132,
+          "k_top": 12,
+          "m_induced": 15,
+          "vote": "keep",
+          "confidence": 0.9167203108981066
+        }
+      ],
+      "total_confidence": 1.7817731427420285,
+      "sum_confidence": 1.7817731427420285,
+      "flip_votes": 1,
+      "keep_votes": 2,
+      "margin": 1,
+      "flipped": false,
+      "rho_lcc": -0.1311922286266675,
+      "rho_deg": 0.7338606032172544,
+      "resolved_mode": "auto_vote"
+    },
+    "rho_lcc": -0.1311922286266675,
+    "rho_deg": 0.7338606032172544
+  },
+  {
+    "dataset": "disney",
+    "mode": "auto_vote",
+    "seed": 2026,
+    "auc_mean": 0.5,
+    "ap_mean": 0.04838709533214569,
+    "polarity_diagnostics": {
+      "mode": "auto_vote",
+      "probes": [
+        {
+          "name": "lcc_spearman",
+          "rho": null,
+          "vote": "abstain",
+          "confidence": 0.0
+        },
+        {
+          "name": "deg_spearman",
+          "rho": null,
+          "vote": "abstain",
+          "confidence": 0.0
+        },
+        {
+          "name": "topq_density",
+          "dens_top": 0.16666666666666416,
+          "dens_full": 0.04392866509310254,
+          "gap": 0.12273800157356163,
+          "k_top": 12,
+          "m_induced": 11,
+          "vote": "keep",
+          "confidence": 0.6136900078678081
+        }
+      ],
+      "total_confidence": 0.6136900078678081,
+      "sum_confidence": 0.6136900078678081,
+      "flip_votes": 0,
+      "keep_votes": 1,
+      "margin": 1,
+      "flipped": false,
+      "resolved_mode": "auto_vote"
+    },
+    "rho_lcc": null,
+    "rho_deg": null
+  },
+  {
+    "dataset": "disney",
+    "mode": "auto_vote",
+    "seed": 3407,
+    "auc_mean": 0.4166666567325592,
+    "ap_mean": 0.04807491973042488,
+    "polarity_diagnostics": {
+      "mode": "auto_vote",
+      "probes": [
+        {
+          "name": "lcc_spearman",
+          "rho": 0.045838172307908945,
+          "vote": "abstain",
+          "confidence": 0.045838172307908945
+        },
+        {
+          "name": "deg_spearman",
+          "rho": 0.2806825936296645,
+          "vote": "keep",
+          "confidence": 0.2806825936296645
+        },
+        {
+          "name": "topq_density",
+          "dens_top": 0.015151515151514923,
+          "dens_full": 0.04392866509310254,
+          "gap": -0.028777149941587615,
+          "k_top": 12,
+          "m_induced": 1,
+          "vote": "flip",
+          "confidence": 0.14388574970793808
+        }
+      ],
+      "total_confidence": 0.4704065156455115,
+      "sum_confidence": 0.4704065156455115,
+      "flip_votes": 1,
+      "keep_votes": 1,
+      "margin": 1,
+      "flipped": false,
+      "rho_lcc": 0.045838172307908945,
+      "rho_deg": 0.2806825936296645,
+      "resolved_mode": "auto_vote"
+    },
+    "rho_lcc": 0.045838172307908945,
+    "rho_deg": 0.2806825936296645
+  },
+  {
+    "dataset": "disney",
+    "mode": "legacy_lcc",
+    "seed": 42,
+    "auc_mean": 0.4661017060279846,
+    "ap_mean": 0.05575897917151451,
+    "polarity_diagnostics": {
+      "mode": "legacy_lcc",
+      "flipped": false,
+      "rho_lcc": 0.0634443845625828,
+      "legacy_threshold": -0.05,
+      "resolved_mode": "legacy_lcc"
+    },
+    "rho_lcc": 0.0634443845625828,
+    "rho_deg": null
+  },
+  {
+    "dataset": "disney",
+    "mode": "legacy_lcc",
+    "seed": 2026,
+    "auc_mean": 0.7725988626480103,
+    "ap_mean": 0.12566137313842773,
+    "polarity_diagnostics": {
+      "mode": "legacy_lcc",
+      "flipped": true,
+      "rho_lcc": -0.12773996810009502,
+      "legacy_threshold": -0.05,
+      "resolved_mode": "legacy_lcc"
+    },
+    "rho_lcc": -0.12773996810009502,
+    "rho_deg": null
+  },
+  {
+    "dataset": "disney",
+    "mode": "legacy_lcc",
+    "seed": 3407,
+    "auc_mean": 0.7627118825912476,
+    "ap_mean": 0.12402718514204025,
+    "polarity_diagnostics": {
+      "mode": "legacy_lcc",
+      "flipped": true,
+      "rho_lcc": -0.11379802503861174,
+      "legacy_threshold": -0.05,
+      "resolved_mode": "legacy_lcc"
+    },
+    "rho_lcc": -0.11379802503861174,
+    "rho_deg": null
+  },
+  {
+    "dataset": "enron",
+    "mode": "auto_vote",
+    "seed": 42,
+    "auc_mean": 0.8525576591491699,
+    "ap_mean": 0.0059651401825249195,
+    "polarity_diagnostics": {
+      "mode": "auto_vote",
+      "probes": [
+        {
+          "name": "lcc_spearman",
+          "rho": -0.06854491605573847,
+          "vote": "flip",
+          "confidence": 0.06854491605573847
+        },
+        {
+          "name": "deg_spearman",
+          "rho": -0.13181948369589072,
+          "vote": "flip",
+          "confidence": 0.13181948369589072
+        },
+        {
+          "name": "topq_density",
+          "dens_top": 0.006968953498034174,
+          "dens_full": 0.00193292628813171,
+          "gap": 0.005036027209902464,
+          "k_top": 1353,
+          "m_induced": 6374,
+          "vote": "abstain",
+          "confidence": 0.025180136049512317
+        }
+      ],
+      "total_confidence": 0.22554453580114148,
+      "sum_confidence": 0.22554453580114148,
+      "flip_votes": 2,
+      "keep_votes": 0,
+      "margin": 1,
+      "flipped": true,
+      "rho_lcc": -0.06854491605573847,
+      "rho_deg": -0.13181948369589072,
+      "resolved_mode": "auto_vote"
+    },
+    "rho_lcc": -0.06854491605573847,
+    "rho_deg": -0.13181948369589072
+  },
+  {
+    "dataset": "enron",
+    "mode": "auto_vote",
+    "seed": 2026,
+    "auc_mean": 0.7486842274665833,
+    "ap_mean": 0.023514240980148315,
+    "polarity_diagnostics": {
+      "mode": "auto_vote",
+      "probes": [
+        {
+          "name": "lcc_spearman",
+          "rho": -0.10289223275312893,
+          "vote": "flip",
+          "confidence": 0.10289223275312893
+        },
+        {
+          "name": "deg_spearman",
+          "rho": 0.02768992422870895,
+          "vote": "abstain",
+          "confidence": 0.02768992422870895
+        },
+        {
+          "name": "topq_density",
+          "dens_top": 0.011922880121754418,
+          "dens_full": 0.00193292628813171,
+          "gap": 0.009989953833622708,
+          "k_top": 1353,
+          "m_induced": 10905,
+          "vote": "abstain",
+          "confidence": 0.04994976916811354
+        }
+      ],
+      "total_confidence": 0.18053192614995145,
+      "sum_confidence": 0.18053192614995145,
+      "flip_votes": 1,
+      "keep_votes": 0,
+      "margin": 1,
+      "flipped": true,
+      "rho_lcc": -0.10289223275312893,
+      "rho_deg": 0.02768992422870895,
+      "resolved_mode": "auto_vote"
+    },
+    "rho_lcc": -0.10289223275312893,
+    "rho_deg": 0.02768992422870895
+  },
+  {
+    "dataset": "enron",
+    "mode": "auto_vote",
+    "seed": 3407,
+    "auc_mean": 0.8320963978767395,
+    "ap_mean": 0.0016403594054281712,
+    "polarity_diagnostics": {
+      "mode": "auto_vote",
+      "probes": [
+        {
+          "name": "lcc_spearman",
+          "rho": -0.07165881679071318,
+          "vote": "flip",
+          "confidence": 0.07165881679071318
+        },
+        {
+          "name": "deg_spearman",
+          "rho": -0.11974500905482058,
+          "vote": "flip",
+          "confidence": 0.11974500905482058
+        },
+        {
+          "name": "topq_density",
+          "dens_top": 0.007466423507699305,
+          "dens_full": 0.00193292628813171,
+          "gap": 0.005533497219567595,
+          "k_top": 1353,
+          "m_induced": 6829,
+          "vote": "abstain",
+          "confidence": 0.027667486097837975
+        }
+      ],
+      "total_confidence": 0.21907131194337173,
+      "sum_confidence": 0.21907131194337173,
+      "flip_votes": 2,
+      "keep_votes": 0,
+      "margin": 1,
+      "flipped": true,
+      "rho_lcc": -0.07165881679071318,
+      "rho_deg": -0.11974500905482058,
+      "resolved_mode": "auto_vote"
+    },
+    "rho_lcc": -0.07165881679071318,
+    "rho_deg": -0.11974500905482058
+  },
+  {
+    "dataset": "enron",
+    "mode": "legacy_lcc",
+    "seed": 42,
+    "auc_mean": 0.8514783978462219,
+    "ap_mean": 0.004600408021360636,
+    "polarity_diagnostics": {
+      "mode": "legacy_lcc",
+      "flipped": true,
+      "rho_lcc": -0.0643938340786459,
+      "legacy_threshold": -0.05,
+      "resolved_mode": "legacy_lcc"
+    },
+    "rho_lcc": -0.0643938340786459,
+    "rho_deg": null
+  },
+  {
+    "dataset": "enron",
+    "mode": "legacy_lcc",
+    "seed": 2026,
+    "auc_mean": 0.7500443458557129,
+    "ap_mean": 0.02625659480690956,
+    "polarity_diagnostics": {
+      "mode": "legacy_lcc",
+      "flipped": true,
+      "rho_lcc": -0.10222921091412966,
+      "legacy_threshold": -0.05,
+      "resolved_mode": "legacy_lcc"
+    },
+    "rho_lcc": -0.10222921091412966,
+    "rho_deg": null
+  },
+  {
+    "dataset": "enron",
+    "mode": "legacy_lcc",
+    "seed": 3407,
+    "auc_mean": 0.8653311729431152,
+    "ap_mean": 0.002449554391205311,
+    "polarity_diagnostics": {
+      "mode": "legacy_lcc",
+      "flipped": true,
+      "rho_lcc": -0.08481007395573802,
+      "legacy_threshold": -0.05,
+      "resolved_mode": "legacy_lcc"
+    },
+    "rho_lcc": -0.08481007395573802,
+    "rho_deg": null
+  },
+  {
+    "dataset": "reddit",
+    "mode": "auto_vote",
+    "seed": 42,
+    "auc_mean": 0.5929597616195679,
+    "ap_mean": 0.042295608669519424,
+    "polarity_diagnostics": {
+      "mode": "auto_vote",
+      "probes": [
+        {
+          "name": "lcc_spearman",
+          "rho": null,
+          "vote": "abstain",
+          "confidence": 0.0
+        },
+        {
+          "name": "deg_spearman",
+          "rho": -0.4864143587326197,
+          "vote": "flip",
+          "confidence": 0.4864143587326197
+        },
+        {
+          "name": "topq_density",
+          "dens_top": 0.001834777078736013,
+          "dens_full": 0.0013016872596389613,
+          "gap": 0.0005330898190970517,
+          "k_top": 1098,
+          "m_induced": 1105,
+          "vote": "abstain",
+          "confidence": 0.002665449095485259
+        }
+      ],
+      "total_confidence": 0.48907980782810495,
+      "sum_confidence": 0.48907980782810495,
+      "flip_votes": 1,
+      "keep_votes": 0,
+      "margin": 1,
+      "flipped": true,
+      "rho_deg": -0.4864143587326197,
+      "resolved_mode": "auto_vote"
+    },
+    "rho_lcc": null,
+    "rho_deg": -0.4864143587326197
+  },
+  {
+    "dataset": "reddit",
+    "mode": "auto_vote",
+    "seed": 2026,
+    "auc_mean": 0.536777675151825,
+    "ap_mean": 0.03507910296320915,
+    "polarity_diagnostics": {
+      "mode": "auto_vote",
+      "probes": [
+        {
+          "name": "lcc_spearman",
+          "rho": null,
+          "vote": "abstain",
+          "confidence": 0.0
+        },
+        {
+          "name": "deg_spearman",
+          "rho": -0.5654760796762174,
+          "vote": "flip",
+          "confidence": 0.5654760796762174
+        },
+        {
+          "name": "topq_density",
+          "dens_top": 0.0017965871485903764,
+          "dens_full": 0.0013016872596389613,
+          "gap": 0.0004948998889514151,
+          "k_top": 1098,
+          "m_induced": 1082,
+          "vote": "abstain",
+          "confidence": 0.0024744994447570756
+        }
+      ],
+      "total_confidence": 0.5679505791209745,
+      "sum_confidence": 0.5679505791209745,
+      "flip_votes": 1,
+      "keep_votes": 0,
+      "margin": 1,
+      "flipped": true,
+      "rho_deg": -0.5654760796762174,
+      "resolved_mode": "auto_vote"
+    },
+    "rho_lcc": null,
+    "rho_deg": -0.5654760796762174
+  },
+  {
+    "dataset": "reddit",
+    "mode": "auto_vote",
+    "seed": 3407,
+    "auc_mean": 0.5579150915145874,
+    "ap_mean": 0.036418382078409195,
+    "polarity_diagnostics": {
+      "mode": "auto_vote",
+      "probes": [
+        {
+          "name": "lcc_spearman",
+          "rho": null,
+          "vote": "abstain",
+          "confidence": 0.0
+        },
+        {
+          "name": "deg_spearman",
+          "rho": -0.6006097341684409,
+          "vote": "flip",
+          "confidence": 0.6006097341684409
+        },
+        {
+          "name": "topq_density",
+          "dens_top": 0.0018248144882632381,
+          "dens_full": 0.0013016872596389613,
+          "gap": 0.0005231272286242768,
+          "k_top": 1098,
+          "m_induced": 1099,
+          "vote": "abstain",
+          "confidence": 0.002615636143121384
+        }
+      ],
+      "total_confidence": 0.6032253703115623,
+      "sum_confidence": 0.6032253703115623,
+      "flip_votes": 1,
+      "keep_votes": 0,
+      "margin": 1,
+      "flipped": true,
+      "rho_deg": -0.6006097341684409,
+      "resolved_mode": "auto_vote"
+    },
+    "rho_lcc": null,
+    "rho_deg": -0.6006097341684409
+  },
+  {
+    "dataset": "reddit",
+    "mode": "legacy_lcc",
+    "seed": 42,
+    "auc_mean": 0.47543609142303467,
+    "ap_mean": 0.029303044080734253,
+    "polarity_diagnostics": {
+      "mode": "legacy_lcc",
+      "flipped": false,
+      "rho_lcc": null,
+      "legacy_threshold": -0.05,
+      "abstain_reason": "rho_nan",
+      "resolved_mode": "legacy_lcc"
+    },
+    "rho_lcc": null,
+    "rho_deg": null
+  },
+  {
+    "dataset": "reddit",
+    "mode": "legacy_lcc",
+    "seed": 2026,
+    "auc_mean": 0.5409181118011475,
+    "ap_mean": 0.033364761620759964,
+    "polarity_diagnostics": {
+      "mode": "legacy_lcc",
+      "flipped": false,
+      "rho_lcc": null,
+      "legacy_threshold": -0.05,
+      "abstain_reason": "rho_nan",
+      "resolved_mode": "legacy_lcc"
+    },
+    "rho_lcc": null,
+    "rho_deg": null
+  },
+  {
+    "dataset": "reddit",
+    "mode": "legacy_lcc",
+    "seed": 3407,
+    "auc_mean": 0.5083543062210083,
+    "ap_mean": 0.03112867847084999,
+    "polarity_diagnostics": {
+      "mode": "legacy_lcc",
+      "flipped": false,
+      "rho_lcc": null,
+      "legacy_threshold": -0.05,
+      "abstain_reason": "rho_nan",
+      "resolved_mode": "legacy_lcc"
+    },
+    "rho_lcc": null,
+    "rho_deg": null
+  }
+]

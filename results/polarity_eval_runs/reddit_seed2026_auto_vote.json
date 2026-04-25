@@ -1,0 +1,53 @@
+{
+  "dataset": "reddit",
+  "seed": 2026,
+  "time_sec": 298.59148966148496,
+  "auc_mean": 0.536777675151825,
+  "auc_std": NaN,
+  "ap_mean": 0.03507910296320915,
+  "ap_std": NaN,
+  "rec_mean": 0.027322404086589813,
+  "rec_std": NaN,
+  "auprc_mean": 0.03476183861494064,
+  "auprc_std": NaN,
+  "f1_mean": 0.027322404086589813,
+  "f1_std": NaN,
+  "polarity_mode": "auto_vote",
+  "polarity_diagnostics": {
+    "mode": "auto_vote",
+    "probes": [
+      {
+        "name": "lcc_spearman",
+        "rho": null,
+        "vote": "abstain",
+        "confidence": 0.0
+      },
+      {
+        "name": "deg_spearman",
+        "rho": -0.5654760796762174,
+        "vote": "flip",
+        "confidence": 0.5654760796762174
+      },
+      {
+        "name": "topq_density",
+        "dens_top": 0.0017965871485903764,
+        "dens_full": 0.0013016872596389613,
+        "gap": 0.0004948998889514151,
+        "k_top": 1098,
+        "m_induced": 1082,
+        "vote": "abstain",
+        "confidence": 0.0024744994447570756
+      }
+    ],
+    "total_confidence": 0.5679505791209745,
+    "sum_confidence": 0.5679505791209745,
+    "flip_votes": 1,
+    "keep_votes": 0,
+    "margin": 1,
+    "flipped": true,
+    "rho_deg": -0.5654760796762174,
+    "resolved_mode": "auto_vote"
+  },
+  "auc": 0.536777675151825,
+  "wall_time_sec": 302.3623707294464
+}

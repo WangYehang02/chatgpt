@@ -1,0 +1,54 @@
+{
+  "dataset": "books",
+  "seed": 3407,
+  "time_sec": 46.37080091610551,
+  "auc_mean": 0.43450668454170227,
+  "auc_std": NaN,
+  "ap_mean": 0.019199997186660767,
+  "ap_std": NaN,
+  "rec_mean": 0.0,
+  "rec_std": NaN,
+  "auprc_mean": 0.01771872118115425,
+  "auprc_std": NaN,
+  "f1_mean": 0.0,
+  "f1_std": NaN,
+  "polarity_mode": "auto_vote",
+  "polarity_diagnostics": {
+    "mode": "auto_vote",
+    "probes": [
+      {
+        "name": "lcc_spearman",
+        "rho": -0.07288309392784612,
+        "vote": "flip",
+        "confidence": 0.07288309392784612
+      },
+      {
+        "name": "deg_spearman",
+        "rho": 0.5429257972319793,
+        "vote": "keep",
+        "confidence": 0.5429257972319793
+      },
+      {
+        "name": "topq_density",
+        "dens_top": 0.010334346504559269,
+        "dens_full": 0.0036778867927533187,
+        "gap": 0.00665645971180595,
+        "k_top": 141,
+        "m_induced": 102,
+        "vote": "abstain",
+        "confidence": 0.03328229855902975
+      }
+    ],
+    "total_confidence": 0.6490911897188552,
+    "sum_confidence": 0.6490911897188552,
+    "flip_votes": 1,
+    "keep_votes": 1,
+    "margin": 1,
+    "flipped": false,
+    "rho_lcc": -0.07288309392784612,
+    "rho_deg": 0.5429257972319793,
+    "resolved_mode": "auto_vote"
+  },
+  "auc": 0.43450668454170227,
+  "wall_time_sec": 50.57229137420654
+}

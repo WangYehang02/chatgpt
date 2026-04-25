@@ -1,0 +1,52 @@
+{
+  "dataset": "disney",
+  "seed": 2026,
+  "time_sec": 22.677959322929382,
+  "auc_mean": 0.5,
+  "auc_std": NaN,
+  "ap_mean": 0.04838709533214569,
+  "ap_std": NaN,
+  "rec_mean": 0.0,
+  "rec_std": NaN,
+  "auprc_mean": 0.524193525314331,
+  "auprc_std": NaN,
+  "f1_mean": 0.0,
+  "f1_std": NaN,
+  "polarity_mode": "auto_vote",
+  "polarity_diagnostics": {
+    "mode": "auto_vote",
+    "probes": [
+      {
+        "name": "lcc_spearman",
+        "rho": null,
+        "vote": "abstain",
+        "confidence": 0.0
+      },
+      {
+        "name": "deg_spearman",
+        "rho": null,
+        "vote": "abstain",
+        "confidence": 0.0
+      },
+      {
+        "name": "topq_density",
+        "dens_top": 0.16666666666666416,
+        "dens_full": 0.04392866509310254,
+        "gap": 0.12273800157356163,
+        "k_top": 12,
+        "m_induced": 11,
+        "vote": "keep",
+        "confidence": 0.6136900078678081
+      }
+    ],
+    "total_confidence": 0.6136900078678081,
+    "sum_confidence": 0.6136900078678081,
+    "flip_votes": 0,
+    "keep_votes": 1,
+    "margin": 1,
+    "flipped": false,
+    "resolved_mode": "auto_vote"
+  },
+  "auc": 0.5,
+  "wall_time_sec": 27.19555425643921
+}

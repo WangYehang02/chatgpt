@@ -1,0 +1,25 @@
+{
+  "dataset": "books",
+  "seed": 3407,
+  "time_sec": 47.81394036114216,
+  "auc_mean": 0.5827851891517639,
+  "auc_std": NaN,
+  "ap_mean": 0.027910536155104637,
+  "ap_std": NaN,
+  "rec_mean": 0.0357142873108387,
+  "rec_std": NaN,
+  "auprc_mean": 0.02600541152060032,
+  "auprc_std": NaN,
+  "f1_mean": 0.0357142873108387,
+  "f1_std": NaN,
+  "polarity_mode": "legacy_lcc",
+  "polarity_diagnostics": {
+    "mode": "legacy_lcc",
+    "flipped": true,
+    "rho_lcc": -0.08591094951366433,
+    "legacy_threshold": -0.05,
+    "resolved_mode": "legacy_lcc"
+  },
+  "auc": 0.5827851891517639,
+  "wall_time_sec": 51.72548460960388
+}

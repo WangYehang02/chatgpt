@@ -1,0 +1,26 @@
+{
+  "dataset": "reddit",
+  "seed": 2026,
+  "time_sec": 322.86771374195814,
+  "auc_mean": 0.5409181118011475,
+  "auc_std": NaN,
+  "ap_mean": 0.033364761620759964,
+  "ap_std": NaN,
+  "rec_mean": 0.0027322403620928526,
+  "rec_std": NaN,
+  "auprc_mean": 0.033230166882276535,
+  "auprc_std": NaN,
+  "f1_mean": 0.0027322403620928526,
+  "f1_std": NaN,
+  "polarity_mode": "legacy_lcc",
+  "polarity_diagnostics": {
+    "mode": "legacy_lcc",
+    "flipped": false,
+    "rho_lcc": null,
+    "legacy_threshold": -0.05,
+    "abstain_reason": "rho_nan",
+    "resolved_mode": "legacy_lcc"
+  },
+  "auc": 0.5409181118011475,
+  "wall_time_sec": 326.95873951911926
+}

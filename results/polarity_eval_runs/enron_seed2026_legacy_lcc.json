@@ -1,0 +1,25 @@
+{
+  "dataset": "enron",
+  "seed": 2026,
+  "time_sec": 241.4531933106482,
+  "auc_mean": 0.7500443458557129,
+  "auc_std": NaN,
+  "ap_mean": 0.02625659480690956,
+  "ap_std": NaN,
+  "rec_mean": 0.0,
+  "rec_std": NaN,
+  "auprc_mean": 0.013495441526174545,
+  "auprc_std": NaN,
+  "f1_mean": 0.0,
+  "f1_std": NaN,
+  "polarity_mode": "legacy_lcc",
+  "polarity_diagnostics": {
+    "mode": "legacy_lcc",
+    "flipped": true,
+    "rho_lcc": -0.10222921091412966,
+    "legacy_threshold": -0.05,
+    "resolved_mode": "legacy_lcc"
+  },
+  "auc": 0.7500443458557129,
+  "wall_time_sec": 245.57347059249878
+}
