@@ -1,0 +1,17 @@
+# 数据与权重
+data/
+datasets/YelpChi/*.zip
+datasets/YelpChi/YelpChi_care_gnn/
+*.npz
+*.pt
+*.pth
+checkpoints/
+logs/
+reports_*/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/

@@ -1,0 +1,19 @@
+# Disney 默认配置（与 disney_best 同先验；run_best_eval 通常使用 disney_best.yaml）
+dataset: disney
+exp_tag: disney_default
+ae_alpha: 0.55
+ae_dropout: 0.35
+ae_lr: 0.025
+flow_t_sampling: logit_normal
+hid_dim: null
+proto_alpha: 0.005
+residual_scale: 10.0
+sample_steps: 75
+use_adaptive_residual_scale: false
+use_multi_scale_residual: false
+use_multi_score_fusion: false
+use_score_smoothing: true
+use_virtual_neighbors: false
+weight: 1.75
+num_trial: 1
+flip_score: true
